@@ -5,7 +5,7 @@
             {
                 "appID": "477EAT77S3.ru.yandex.ymarket",
                 "paths": [
-                    "search"
+                    "/search"
                 ]
             }
         ]

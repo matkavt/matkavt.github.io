@@ -5,7 +5,7 @@
       {
         "appID": "PGB36VEQ8D.ru.yandex.ymarket",
         "paths": [
-          "*"
+          "/search"
         ]
       }
     ]

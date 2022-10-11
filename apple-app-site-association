@@ -5,6 +5,10 @@
             {
                 "appID": "JX348C67KN.com.matkavt.Spy",
                 "paths": [ "spy/*" ]
+            },
+	   {
+                "appID": "JX348C67KN.com.matkavt.Labyrinth",
+                "paths": [ "labyrinth/*" ]
             }
         ]
     }

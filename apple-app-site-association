@@ -8,7 +8,7 @@
             },
 	   {
                 "appID": "JX348C67KN.com.matkavt.Labyrinth",
-                "paths": [ "labyrinth/*", "incognita/*" ]
+                "paths": [ "incognita/*", "labyrinth/*" ]
             }
         ]
     }

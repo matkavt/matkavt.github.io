@@ -8,13 +8,25 @@
             "image_url": "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
         },
         "pages": [
-            "id": "story1_page1",
-            "duration": 3,
-            "date_published": "2014-01-24T20:00:00.000Z",
-            "image_url": "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            "action": {
-                "title": "PET ME",
-                "url": "hseappx://payments"
+            {
+                "id": "story1_page1",
+                "duration": 3,
+                "date_published": "2014-01-24T20:00:00.000Z",
+                "image_url": "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                "action": {
+                    "title": "PET ME",
+                    "url": "hseappx://payments"
+                }
+            },
+            {
+                "id": "story1_page2",
+                "duration": 10,
+                "date_published": "2014-01-24T21:00:00.000Z",
+                "image_url": "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                "action": {
+                    "title": "PET ME 2",
+                    "url": "hseappx://payments"
+                }
             }
         ]
     },

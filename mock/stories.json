@@ -32,7 +32,7 @@
     },
     {
         "id": "story2",
-        "preview_url": "https://www.kolpaper.com/wp-content/uploads/2022/12/cat-wallpaper-kolpaper-10.jpg",
+        "preview_url": "https://i.pinimg.com/originals/78/21/6d/78216d6cbcd18824a4180db532aabbc1.jpg",
         "title": "Test story CAT 2",
         "publisher": {
             "name": "NRU HSE 2",
@@ -67,6 +67,27 @@
                 "action": {
                     "title": "PET ME 2 3",
                     "url": "hseappx://payments"
+                }
+            }
+        ]
+    },
+    {
+        "id": "story3",
+        "preview_url": "https://noimage.jpg",
+        "title": "Preview broken",
+        "publisher": {
+            "name": "Publisher broken",
+            "image_url": "https://noimage.jpg"
+        },
+        "pages": [
+            {
+                "id": "story3_page1",
+                "duration": 3,
+                "date_published": "2014-01-24T20:00:00.000Z",
+                "image_url": "https://noimage.jpg",
+                "action": {
+                    "title": "Image and link broken",
+                    "url": "hseappx://unsupportedDeeplink"
                 }
             }
         ]

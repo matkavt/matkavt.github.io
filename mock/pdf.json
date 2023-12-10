@@ -1,20 +1,86 @@
 [
     {
-        "id": "pdf_id_1",
-        "url": "https://onlinetestcase.com/wp-content/uploads/2023/06/500-KB.pdf",
-        "picture": "https://elibrary.ru/itemfiles/0/4/6/5/8/0/3/6/2//Cover-rus-3-21.jpg",
-        "title": "2023. vol. 17. No. 1"
+        "id": 18258,
+        "title": "Парадоксальная пара- Восприятие -Репрезентация. ",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18258",
+        "picture": null
     },
     {
-        "id": "pdf_id_2",
-        "url": "https://onlinetestcase.com/wp-content/uploads/2023/06/500-KB.pdf",
-        "picture": "https://elibrary.ru/itemfiles/0/4/6/5/8/0/3/6/2//Cover-rus-3-21.jpg",
-        "title": "2023. vol. 17. No. 2"
+        "id": 18238,
+        "title": "Репарация внутренних объектов на примере жизни и творчества А. П. Чехова",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18238",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1193_ru_RU.jpg"
     },
     {
-        "id": "pdf_id_3",
-        "url": "https://onlinetestcase.com/wp-content/uploads/2023/06/500-KB.pdf",
-        "picture": "https://elibrary.ru/itemfiles/0/4/6/5/8/0/3/6/2//Cover-rus-3-21.jpg",
-        "title": "2023. vol. 17. No. 3"
+        "id": 18237,
+        "title": "Инаковость в психоанализе. Судьба инаковости в фильме Ф. Озона «Двуличный любовник»",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18237",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1193_ru_RU.jpg"
+    },
+    {
+        "id": 18236,
+        "title": "От ложного Я к ложному Мы",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18236",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1193_ru_RU.jpg"
+    },
+    {
+        "id": 18235,
+        "title": "Адаптивность современных руководителей: психоаналитический аспект",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18235",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1193_ru_RU.jpg"
+    },
+    {
+        "id": 18234,
+        "title": "Психоаналитический взгляд на проблему идентичности и ее кризиса",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18234",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1193_ru_RU.jpg"
+    },
+    {
+        "id": 18233,
+        "title": "Ненависть в диаде «мать – дочь»",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18233",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1193_ru_RU.jpg"
+    },
+    {
+        "id": 18232,
+        "title": "От психосоматической медицины к психоаналитической психосоматике",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18232",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1193_ru_RU.jpg"
+    },
+    {
+        "id": 18231,
+        "title": "Интервью с Давидом Розенфельдом",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18231",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1193_ru_RU.jpg"
+    },
+    {
+        "id": 18230,
+        "title": "«История входит в дверь»: значение работ Ф. Давуан и Ж.-М. Годийера для исследования воплощенного опыта и межпоколенческой травмы",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18230",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1193_ru_RU.jpg"
+    },
+    {
+        "id": 18229,
+        "title": "Возникновение Я и процесс символизации",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/18229",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1193_ru_RU.jpg"
+    },
+    {
+        "id": 17620,
+        "title": "Нарциссическая перверсия и объектные отношения (на примере сериала «Грязный Джон»)",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/17620",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1172_ru_RU.jpg"
+    },
+    {
+        "id": 17619,
+        "title": "Внутренняя сила лидера",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/17619",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1172_ru_RU.jpg"
+    },
+    {
+        "id": 17618,
+        "title": "Фетиш как перверсивное проявление в современном мире",
+        "url": "https://psychoanalysis-journal.hse.ru/article/download/17618",
+        "picture": "https://ojs.hse.ru/public/journals/25/cover_issue_1172_ru_RU.jpg"
     }
 ]

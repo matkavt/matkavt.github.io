@@ -9,6 +9,10 @@
                {
                     "appID": "JX348C67KN.com.matkavt.Labyrinth",
                     "paths": [ "incognita/*", "labyrinth/*" ]
+                },
+               {
+                    "appID": "RGC268JPD5.com.umarta.people",
+                    "paths": [ "people/*" ]
                 }
             ]
         },

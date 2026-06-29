@@ -6,7 +6,7 @@ bidmachine.io,1,DIRECT
 bidmachine.io,466,DIRECT
 #AdMob
 #Replace the Publisher_ID below with your Admob Publisher ID
-google.com, Publisher_ID, DIRECT, f08c47fec0942fa0
+google.com, pub-8490133905831636, DIRECT, f08c47fec0942fa0
 #Meta-Audience
 #Replace the Business_ID below with your Meta Business ID
 facebook.com,1242978722562045,RESELLER,c3e20eee3f780d68

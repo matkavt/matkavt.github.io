@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Вопросы про Аню</title>
+<meta name="description" content="Случайный вопрос про Аню">
+<meta name="theme-color" content="#12071f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #12071f;
+    background-image:
+      radial-gradient(60vw 60vw at 15% 10%, rgba(168,85,247,.35), transparent 60%),
+      radial-gradient(55vw 55vw at 85% 85%, rgba(236,72,153,.30), transparent 60%),
+      radial-gradient(50vw 50vw at 80% 15%, rgba(56,189,248,.20), transparent 60%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px calc(20px + env(safe-area-inset-left)) calc(24px + env(safe-area-inset-bottom));
+    text-align: center;
+    overflow-x: hidden;
+  }
+  .wrap { width: 100%; max-width: 680px; }
+  .kicker {
+    font-size: 13px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+    margin-bottom: 22px;
+  }
+  .card {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 26px;
+    padding: 38px 28px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 24px 70px rgba(0,0,0,.45);
+    min-height: 42vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #q {
+    font-size: clamp(22px, 5.2vw, 34px);
+    line-height: 1.35;
+    font-weight: 650;
+    margin: 0;
+    text-wrap: balance;
+    animation: pop .35s ease;
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(14px) scale(.98); }
+    to   { opacity: 1; transform: none; }
+  }
+  button {
+    margin-top: 26px;
+    width: 100%;
+    max-width: 420px;
+    border: 0;
+    border-radius: 999px;
+    padding: 18px 28px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: inherit;
+    color: #23093a;
+    background: linear-gradient(135deg, #f9a8d4, #c4b5fd 55%, #a5f3fc);
+    cursor: pointer;
+    box-shadow: 0 14px 34px rgba(196,181,253,.35);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  button:hover { transform: translateY(-2px); }
+  button:active { transform: translateY(1px) scale(.99); box-shadow: 0 8px 20px rgba(196,181,253,.3); }
+  .hint { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,.42); }
+  @media (prefers-reduced-motion: reduce) {
+    #q { animation: none; }
+    button { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="kicker">Вопрос про Аню</div>
+    <div class="card"><p id="q">…</p></div>
+    <button id="next" type="button">Следующий вопрос</button>
+    <div class="hint">Нажми пробел или тапни по экрану</div>
+  </div>
+
+<script>
+const QUESTIONS = [
+  "Если бы Аня была животным — каким и почему?",
+  "Какой мем лучше всего описывает Аню? Покажи его.",
+  "Если бы Аня была президентом мира один день — какой был бы её первый указ?",
+  "Какая песня должна играть каждый раз, когда Аня входит в комнату?",
+  "Какую фразу Ани ты можешь буквально услышать у себя в голове?",
+  "Если бы Аня была блюдом — каким?",
+  "Что обязательно должно входить в Anya Starter Pack?",
+  "Какой самый смешной поступок Ани ты помнишь?",
+  "Если бы Аня была персонажем фильма или сериала — кем?",
+  "Какую суперспособность ты бы подарил Ане?",
+  "Что Аня делает так, что ты каждый раз думаешь: «Ну конечно, это Аня»?",
+  "Если бы Аня была брендом — что бы она продавала?",
+  "Какой самый бесполезный, но идеально подходящий Ане подарок ты мог бы ей подарить?",
+  "Что бы ты категорически запретил Ане делать на один день?",
+  "Если бы про Аню сняли фильм, как бы он назывался?",
+  "Какой мем ты бы отправил Ане прямо сейчас? Покажи его.",
+  "Если бы Аня могла телепортироваться только в одно место — куда бы она постоянно летала?",
+  "Какой у Ани самый узнаваемый «персонажный баг»?",
+  "Если бы Аня стала миллионером завтра, на что она потратила бы первые €10 000?",
+  "Что Аня точно будет делать в 30 лет?",
+  "Какое одно слово лучше всего описывает Аню?",
+  "Что первое приходит тебе в голову, когда ты слышишь «Аня»?",
+  "Если бы Аня была коктейлем — что в нём было бы?",
+  "Какую работу Аня точно смогла бы выполнять лучше всех? А какую — точно нет?",
+  "Какой совет Ане ты дал бы на следующие 10 лет?",
+  "Если бы Аня участвовала в реалити-шоу, в каком и почему?",
+  "Какое качество Ани ты хотел бы украсть себе?",
+  "Где и какой ты представляешь Аню в 30 лет?",
+  "За что ты особенно ценишь Аню?",
+  "Пожелай Ане что-нибудь на следующие 10 лет, но максимально НЕбанальное.",
+  "Изобрази Аню в трёх секундах без слов. Что ты показываешь?",
+  "Какой самый странный закон нужно было бы принять, если бы Аня стала президентом?",
+  "Представь, что Аня — NPC в видеоигре. Какая у неё главная реплика?",
+  "Как выглядел бы трейлер фильма «Аня: Начало»? Покажи его прямо сейчас.",
+  "Какой звук идеально описывает Аню? Издай его.",
+  "Если бы Аня была мемом, который уже устарел, каким именно?",
+  "Какую абсолютно бесполезную суперсилу ты бы дал Ане?",
+  "Представь, что Аню нужно продать на аукционе. Как ты её будешь рекламировать?",
+  "Какой предмет из ближайших 5 метров больше всего похож на Аню? Покажи его и объясни почему.",
+  "Если бы Аня была злодеем, каким был бы её главный злодейский план?",
+  "Придумай Ане новый никнейм, который она заслуживает.",
+  "Какую фразу нужно написать на памятнике Ане через 100 лет?",
+  "Если бы Аня могла оставить себе сообщение в прошлое, что бы она написала себе в 15 лет?",
+  "Если бы Аня получила €1 000 000, но могла потратить их только за один день — что бы она сделала?",
+  "Представь, что завтра Аня просыпается знаменитой. За что именно она стала знаменитой?",
+  "Какой самый нелепый бизнес Аня могла бы успешно открыть?",
+  "Если бы Аня была приложением в App Store, какие у неё были бы название, описание и рейтинг?",
+  "Придумай заголовок статьи об Ане через 10 лет.",
+  "Какую одну вещь Аня должна обязательно успеть сделать до 30 лет?",
+  "Если бы ты мог добавить Ане одну новую функцию, как у приложения, что бы это было?"
+];
+
+const el = document.getElementById('q');
+let pool = [];
+
+function reshuffle() {
+  pool = QUESTIONS.slice();
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+}
+
+function next() {
+  if (!pool.length) reshuffle();
+  const q = pool.pop();
+  el.textContent = q;
+  el.style.animation = 'none';
+  void el.offsetWidth;
+  el.style.animation = '';
+}
+
+document.getElementById('next').addEventListener('click', next);
+document.addEventListener('keydown', function (e) {
+  if (e.code === 'Space' || e.code === 'Enter' || e.code === 'ArrowRight') {
+    e.preventDefault();
+    next();
+  }
+});
+document.body.addEventListener('click', function (e) {
+  if (e.target.closest('button')) return;
+  next();
+});
+
+next();
+</script>
+</body>
+</html>

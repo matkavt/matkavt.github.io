@@ -1,22 +1,38 @@
 {
-        "applinks": {
-            "apps": [],
-            "details": [
-                {
-                    "appID": "JX348C67KN.com.matkavt.Spy",
-                    "paths": [ "spy/*" ]
-                },
-               {
-                    "appID": "JX348C67KN.com.matkavt.Labyrinth",
-                    "paths": [ "incognita/*", "labyrinth/*" ]
-                },
-               {
-                    "appID": "RGC268JPD5.com.umarta.people",
-                    "paths": [ "people/*" ]
-                }
-            ]
-        },
-            "webcredentials": {
-                    "apps": [ "RGC268JPD5.com.umarta.people" ]
-            }
-    }
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "JX348C67KN.com.matkavt.Spy",
+        "paths": [
+          "spy/*"
+        ]
+      },
+      {
+        "appID": "JX348C67KN.com.matkavt.Labyrinth",
+        "paths": [
+          "incognita/*",
+          "labyrinth/*"
+        ]
+      },
+      {
+        "appID": "RGC268JPD5.com.umarta.people",
+        "paths": [
+          "people/*"
+        ]
+      },
+      {
+        "appID": "JX348C67KN.com.matkavt.shelter",
+        "paths": [
+          "/ark/g",
+          "/ark/g/*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "RGC268JPD5.com.umarta.people"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.matkavt.shelter",
+      "sha256_cert_fingerprints": [
+        "CF:19:C4:C4:C1:EA:BF:23:DD:8B:19:1D:A1:F4:5B:F0:59:46:FE:71:63:3A:B4:71:08:13:6F:07:26:85:7A:0F"
+      ]
+    }
+  }
+]

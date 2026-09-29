@@ -1,0 +1,3 @@
+# Папки с точкой Jekyll по умолчанию не публикует, а файлы связки
+# приложений (universal links, App Links) обязаны лежать в /.well-known/.
+include: [".well-known"]

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мафия: ведущий в телефоне</title>
+<meta name="description" content="Мафия для компании, где ведущий — телефон. Играют все, никто не сидит в стороне.">
+<meta property="og:title" content="Мафия: ведущий в телефоне">
+<meta property="og:description" content="Играют все — ведущий в телефоне. Ночью глаза не закрывает никто.">
+<meta name="apple-itunes-app" content="app-id=6813280622">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<!--
+  Сюда ведёт «Поделиться» в приложении: итог партии и «Посоветовать друзьям».
+  Одна ссылка на оба магазина — телефон получателя может быть любым.
+  Путь /mafia/get/ — контракт с приложением, см. lib/core/share.dart в mafia.
+-->
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: #0f1012; color: #f2f1ee;
+    font: 17px/1.45 "PT Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex; flex-direction: column;
+  }
+  .stripe { height: 6px; background: #c8202e; }
+  main { width: 100%; max-width: 26rem; margin: 0 auto; padding: 2.4rem 1.5rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .mark { width: 96px; height: 96px; border-radius: 24px; background: #16181b; border: 1px solid #2e3238;
+          margin: 0 auto 1.1rem; display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 0 48px rgba(200, 32, 46, .25); }
+  .brand { font: 600 .95rem "Oswald", sans-serif; letter-spacing: .2em; color: #8b9098; text-align: center; }
+  h1 { font: 700 2.2rem/1.05 "Oswald", sans-serif; text-align: center; margin: .5rem 0 .7rem; text-transform: uppercase; }
+  .lead { color: #b9bcc2; text-align: center; margin: 0; }
+  .points { margin: 1.6rem 0 0; padding: 1rem 1.1rem; border-radius: 14px; background: #1a1c20; border: 1px solid #2e3238; list-style: none; }
+  .points li { padding: .35rem 0 .35rem 1.3rem; position: relative; color: #d6d7da; }
+  .points li::before { content: ""; position: absolute; left: 0; top: .85rem; width: .5rem; height: .5rem; border-radius: 50%; background: #c8202e; }
+  .stores { display: flex; flex-direction: column; gap: .65rem; margin-top: 1.5rem; }
+  .store { height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none;
+           font: 700 1.15rem "Oswald", sans-serif; letter-spacing: .05em; border: 2px solid #c8202e; color: #f2f1ee; }
+  .store.primary { background: #c8202e; box-shadow: 0 4px 0 #7e1620; }
+  .note { margin-top: auto; padding-top: 1.5rem; font-size: .85rem; color: #8b9098; text-align: center; }
+  a:focus-visible { outline: 3px solid #f2f1ee; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<main>
+  <div class="mark" aria-hidden="true">
+    <!-- Маска с иконки приложения. -->
+    <svg width="64" height="64" viewBox="0 0 64 64"><path d="M6 26c0-6 5-10 12-10h28c7 0 12 4 12 10v4c0 9-7 16-15 16-6 0-9-4-11-8-2 4-5 8-11 8-8 0-15-7-15-16z" fill="#c8202e"/><ellipse cx="21" cy="29" rx="6" ry="4" fill="#0f1012"/><ellipse cx="43" cy="29" rx="6" ry="4" fill="#0f1012"/></svg>
+  </div>
+  <div class="brand" data-t="brand">МАФИЯ</div>
+  <h1 data-t="title">Ведущий в телефоне</h1>
+  <p class="lead" data-t="lead">Мафия для компании от пяти человек. Играют все — никто не сидит в стороне ведущим.</p>
+
+  <ul class="points">
+    <li data-t="p1">Телефон раздаёт роли и ведёт ночь голосом.</li>
+    <li data-t="p2">Ночью глаза не закрывает никто: ход есть у каждого, и со стороны все ходы одинаковые.</li>
+    <li data-t="p3">Днём держит время и считает руки на голосовании.</li>
+  </ul>
+
+  <div class="stores" id="stores">
+    <a class="store" id="appstore" href="https://apps.apple.com/app/id6813280622" data-t="appstore">Скачать в App Store</a>
+    <a class="store" id="play" href="https://play.google.com/store/apps/details?id=com.matkavt.mafia&amp;referrer=utm_source%3Dshare" data-t="play">Скачать в Google Play</a>
+  </div>
+
+  <p class="note" data-t="note">Без интернета и без регистрации.</p>
+</main>
+<script>
+(function () {
+  var en = !/^(ru|uk|be|kk)/i.test(navigator.language || '');
+  var T = {
+    brand: 'MAFIA', title: 'The host is in your phone',
+    lead: 'Mafia for a group of five or more. Everyone plays — nobody sits out as the host.',
+    p1: 'The phone deals the roles and runs the night out loud.',
+    p2: 'Nobody closes their eyes: everyone makes a move at night, and every move looks the same.',
+    p3: 'By day it keeps time and counts the hands at the vote.',
+    appstore: 'Get it on the App Store', play: 'Get it on Google Play',
+    note: 'No internet, no sign-up.'
+  };
+  if (en) {
+    document.documentElement.lang = 'en';
+    document.title = 'Mafia: Host in Your Pocket';
+    document.querySelectorAll('[data-t]').forEach(function (el) {
+      var k = el.getAttribute('data-t'); if (T[k]) el.textContent = T[k];
+    });
+  }
+
+  // Нужный магазин — первым и залитым. Без переадресации: если приложение
+  // ещё не вышло в одном из магазинов, человек увидит второй, а не пустоту.
+  var ua = navigator.userAgent || '';
+  var android = /Android/i.test(ua);
+  var ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+  var stores = document.getElementById('stores');
+  var mine = document.getElementById(android ? 'play' : 'appstore');
+  if (android || ios) {
+    mine.classList.add('primary');
+    stores.insertBefore(mine, stores.firstChild);
+  } else {
+    document.getElementById('appstore').classList.add('primary');
+  }
+})();
+</script>
+</body>
+</html>

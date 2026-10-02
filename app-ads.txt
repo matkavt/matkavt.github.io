@@ -2575,3 +2575,14 @@ triplelift.com, 14699, RESELLER, 6c33edb13117fd86
 bidease.com, bidease_seller_49, RESELLER
 bold-win.com, 1145, RESELLER, 71746737d0bab951
 media.net, 8CU47MDK1, RESELLER, 818f58666cabc936
+
+# Appodeal — сверено с www.appodeal.com/app-ads.txt 02.10.2026: строки их
+# аккаунтов в сетях, появившиеся после нашей копии списка. AppLovin и Moloco
+# подключены в «Мафии» и «Ковчеге» 01.10.2026. Строку appodeal.com с их
+# собственным номером (253504) не берём — наш аккаунт 27896 выше.
+google.com, pub-1165868533288337, DIRECT, f08c47fec0942fa0
+google.com, pub-7600792684276223, DIRECT, f08c47fec0942fa0
+facebook.com, 3822508371411671, DIRECT, c3e20eee3f780d68
+applovin.com, 12211523f96c3b46a9fe1ec25f8db6ac, DIRECT
+rhebus.works, 9019999555, RESELLER
+moloco.com, rC98z4bTVxQyD4nc, DIRECT

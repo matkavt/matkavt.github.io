@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мафия — вас зовут за стол</title>
+<meta name="description" content="Мафия для компании, где ведущий — телефон. Каждый играет со своего телефона.">
+<meta property="og:title" content="Мафия — вас зовут за стол">
+<meta property="og:description" content="Поставьте игру и войдите в комнату по коду: роль и ночной ход — на вашем телефоне.">
+<meta name="apple-itunes-app" content="app-id=6813280622">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<!--
+  Сюда попадают по ссылке https://matkavt.github.io/mafia/g/?c=КОД, у кого игры НЕТ.
+  У кого есть — телефон открывает приложение сразу на входе в комнату и эту
+  страницу не видит (apple-app-site-association и .well-known/assetlinks.json
+  в корне сайта).
+
+  Страница ничего не хранит и никуда не ходит: код берётся из адреса, как есть.
+  Путь /mafia/g — контракт с приложением, см. lib/core/join_link.dart в mafia.
+-->
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: #0f1012; color: #f2f1ee;
+    font: 17px/1.45 "PT Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex; flex-direction: column;
+  }
+  .stripe { height: 6px; background: #c8202e; }
+  main { width: 100%; max-width: 26rem; margin: 0 auto; padding: 2.4rem 1.5rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .mark { width: 96px; height: 96px; border-radius: 24px; background: #16181b; border: 1px solid #2e3238;
+          margin: 0 auto 1.1rem; display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 0 48px rgba(200, 32, 46, .25); }
+  .brand { font: 600 .95rem "Oswald", sans-serif; letter-spacing: .2em; color: #8b9098; text-align: center; }
+  h1 { font: 700 2.2rem/1.05 "Oswald", sans-serif; text-align: center; margin: .5rem 0 .7rem; text-transform: uppercase; }
+  .lead { color: #b9bcc2; text-align: center; margin: 0; }
+  .code { margin: 1.6rem 0 0; padding: 1rem; border-radius: 14px; background: #1a1c20; border: 1px solid #2e3238; text-align: center; }
+  .code small { display: block; font-size: .75rem; letter-spacing: .12em; color: #8b9098; }
+  .code b { display: block; font: 700 2.7rem "Oswald", sans-serif; letter-spacing: .14em; color: #f2f1ee; margin: .15rem 0 .5rem; }
+  button, .store { font-family: inherit; cursor: pointer; }
+  .copy { height: 42px; padding: 0 1.1rem; border-radius: 10px; border: 1.5px solid #c8202e; background: transparent; color: #f2f1ee; font-weight: 700; font-size: .95rem; }
+  .stores { display: flex; flex-direction: column; gap: .65rem; margin-top: 1.5rem; }
+  .store { height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none;
+           font: 700 1.15rem "Oswald", sans-serif; letter-spacing: .05em; border: 2px solid #c8202e; color: #f2f1ee; }
+  .store.primary { background: #c8202e; box-shadow: 0 4px 0 #7e1620; }
+  .note { margin-top: auto; padding-top: 1.5rem; font-size: .85rem; color: #8b9098; text-align: center; }
+  .hidden { display: none; }
+  a:focus-visible, button:focus-visible { outline: 3px solid #f2f1ee; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<main>
+  <div class="mark" aria-hidden="true">
+    <!-- Маска с иконки приложения. -->
+    <svg width="64" height="64" viewBox="0 0 64 64"><path d="M6 26c0-6 5-10 12-10h28c7 0 12 4 12 10v4c0 9-7 16-15 16-6 0-9-4-11-8-2 4-5 8-11 8-8 0-15-7-15-16z" fill="#c8202e"/><ellipse cx="21" cy="29" rx="6" ry="4" fill="#0f1012"/><ellipse cx="43" cy="29" rx="6" ry="4" fill="#0f1012"/></svg>
+  </div>
+  <div class="brand" data-t="brand">МАФИЯ</div>
+  <h1 data-t="title">Вас зовут за стол</h1>
+  <p class="lead" data-t="lead">Ведущий — в телефоне хозяина, а роль и ночной ход — на вашем. Поставьте игру и откройте эту ссылку ещё раз — или введите код.</p>
+
+  <div class="code" id="codeBox">
+    <small data-t="codeLabel">КОД КОМНАТЫ</small>
+    <b id="code">—</b>
+    <button class="copy" id="copy" type="button" data-t="copy">Скопировать код</button>
+  </div>
+
+  <div class="stores" id="stores">
+    <a class="store" id="appstore" href="https://apps.apple.com/app/id6813280622" data-t="appstore">Скачать в App Store</a>
+    <a class="store" id="play" href="https://play.google.com/store/apps/details?id=com.matkavt.mafia&amp;referrer=utm_source%3Djoin_link" data-t="play">Скачать в Google Play</a>
+  </div>
+
+  <p class="note" data-t="note">Для игры с разных телефонов нужен интернет. Гостям она бесплатна.</p>
+</main>
+<script>
+(function () {
+  var en = !/^(ru|uk|be|kk)/i.test(navigator.language || '');
+  var T = {
+    brand: 'MAFIA', title: 'You’re invited to the table',
+    lead: 'The host runs the game on their phone; your role and night move are on yours. Install the game, then open this link again — or enter the code.',
+    codeLabel: 'ROOM CODE', copy: 'Copy code', copied: 'Copied',
+    appstore: 'Get it on the App Store', play: 'Get it on Google Play',
+    note: 'Playing on separate phones needs the internet. It is free for guests.'
+  };
+  if (en) {
+    document.documentElement.lang = 'en';
+    document.title = 'Mafia — you’re invited to the table';
+    document.querySelectorAll('[data-t]').forEach(function (el) {
+      var k = el.getAttribute('data-t'); if (T[k]) el.textContent = T[k];
+    });
+  }
+
+  // Код из адреса: принимаем то же, что приложение, — регистр и пробелы
+  // прощаем, но показываем только если похоже на код (6 знаков без 0/O, 1/I).
+  var raw = new URLSearchParams(location.search).get('c') || '';
+  var clean = raw.toUpperCase().replace(/[\s-]/g, '');
+  var box = document.getElementById('codeBox');
+  if (/^[A-HJ-NP-Z2-9]{6}$/.test(clean)) {
+    document.getElementById('code').textContent = clean;
+  } else {
+    box.classList.add('hidden');   // приглашение без кода: просто «сыграйте и вы»
+  }
+
+  document.getElementById('copy').addEventListener('click', function () {
+    var btn = this, text = document.getElementById('code').textContent;
+    var done = function () { btn.textContent = en ? T.copied : 'Скопировано'; };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+  });
+
+  // Нужный магазин — первым и залитым.
+  var ua = navigator.userAgent || '';
+  var android = /Android/i.test(ua);
+  var ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+  var stores = document.getElementById('stores');
+  var mine = document.getElementById(android ? 'play' : 'appstore');
+  if (android || ios) {
+    mine.classList.add('primary');
+    stores.insertBefore(mine, stores.firstChild);
+  } else {
+    document.getElementById('appstore').classList.add('primary');
+  }
+})();
+</script>
+</body>
+</html>

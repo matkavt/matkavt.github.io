@@ -27,6 +27,13 @@
           "/ark/g",
           "/ark/g/*"
         ]
+      },
+      {
+        "appID": "JX348C67KN.com.matkavt.mafia",
+        "paths": [
+          "/mafia/g",
+          "/mafia/g/*"
+        ]
       }
     ]
   },

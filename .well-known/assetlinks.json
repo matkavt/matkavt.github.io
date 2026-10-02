@@ -10,5 +10,17 @@
         "CF:19:C4:C4:C1:EA:BF:23:DD:8B:19:1D:A1:F4:5B:F0:59:46:FE:71:63:3A:B4:71:08:13:6F:07:26:85:7A:0F"
       ]
     }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.matkavt.mafia",
+      "sha256_cert_fingerprints": [
+        "96:58:44:45:74:27:A5:73:8B:0A:6B:07:9F:76:04:F1:11:D9:EF:D2:7C:AD:F2:27:F5:E3:6F:68:7B:B0:B1:4E"
+      ]
+    }
   }
 ]

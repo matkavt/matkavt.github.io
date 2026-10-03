@@ -23,10 +23,12 @@
 <body>
 
 <h1>Политика конфиденциальности</h1>
-<p class="date">«Бункер: Ковчег» · обновлено 2 октября 2026 года</p>
+<p class="date">«Бункер: Ковчег» · обновлено 3 октября 2026 года</p>
 
 <h2>Коротко</h2>
-<p>Приложение не требует регистрации и не спрашивает ни имени, ни почты. Всё,
+<p>Приложение не требует регистрации и не спрашивает имени. Почту оно просит
+в одном случае — если вы покупаете код «Всё включено» (Google Play в России),
+для чека. Всё,
 что вы вводите — имена игроков и заметки о них, — остаётся на вашем устройстве
 и никуда не отправляется. Наружу уходят обезличенная статистика о ходе партии,
 отчёты о сбоях и — если у вас нет покупки — данные, нужные для показа рекламы;
@@ -43,10 +45,11 @@
 
 <h2>Что уходит наружу</h2>
 <p><strong>Сама игра не требует интернета вообще.</strong> Партия целиком
-выводится из кода игры на вашем устройстве, сервера у нас нет, и без сети
-приложение работает полностью.</p>
+выводится из кода игры на вашем устройстве, игрового сервера у нас нет, и без
+сети приложение работает полностью.</p>
 
-<p>Наружу уходят три вещи, и все можно назвать поимённо.</p>
+<p>Наружу уходят три вещи, и все можно назвать поимённо. Четвёртая — только
+у тех, кто покупает код, о ней в разделе «Покупка кода».</p>
 
 <p><strong>Обезличенная статистика</strong> (Firebase Analytics, Google):
 события о ходе партии — приложение открыли, партию создали, код раздали, дошли
@@ -88,10 +91,31 @@
 платёжных данных — только факт покупки, товар и цену; это событие отмечается
 и в обезличенной статистике.</p>
 
+<h2>Покупка кода (Google Play в России)</h2>
+<p>Google Play не принимает оплату у российских аккаунтов, поэтому им игра
+предлагает купить код «Всё включено» через платёжную платформу
+<a href="https://lava.top/docs/policy">lava.top</a> (LAVALANE LTD, Кипр). Это
+единственный случай, когда приложение обращается к нашему серверу.</p>
+<ul>
+  <li><strong>Почта</strong>, которую вы ввели, уходит на наш сервер и в
+  lava.top — для чека и чтобы восстановить код, если он потерялся. Рассылок
+  нет.</li>
+  <li><strong>Оплату проводит lava.top</strong>: карту или СБП вы вводите на
+  её странице, мы платёжных данных не получаем и не храним.</li>
+  <li><strong>Наш сервер хранит</strong> почту, номер счёта, выданный код и
+  случайные номера устройств, на которых код включён (не больше трёх). Номер
+  устройства приложение придумывает само, с железом и рекламным
+  идентификатором он не связан.</li>
+</ul>
+<p>Сервер работает на Cloudflare Workers (Cloudflare, Inc.,
+<a href="https://www.cloudflare.com/privacypolicy/">политика Cloudflare</a>).
+Данные храним, пока действует код; удалим по письму на адрес ниже — код после
+этого перестанет восстанавливаться по почте.</p>
+
 <h2>Дети</h2>
 <p>Игра рассчитана на компанию подростков и взрослых и не предназначена для
-детей младше 13 лет. Персональные данные — имя, почта, телефон — не собираются
-ни у кого.</p>
+детей младше 13 лет. Имя и телефон не собираются ни у кого; почта — только
+если её ввели при покупке кода.</p>
 
 <h2>Права</h2>
 <p>Приложение не запрашивает доступ ни к камере, ни к микрофону, ни к контактам.
@@ -104,7 +128,8 @@
 
 <h2>Удаление данных</h2>
 <p>Удаление приложения стирает всё, что оно хранило. Чтобы удалить уже
-отправленную обезличенную статистику, напишите на адрес ниже — уберём. Данные
+отправленную обезличенную статистику или почту и код с нашего сервера,
+напишите на адрес ниже — уберём. Данные
 рекламы хранит Appodeal и рекламные сети; запрос на их удаление — по ссылке на
 политику Appodeal выше, а связь с вами рвётся сбросом рекламного
 идентификатора в настройках телефона.</p>
@@ -116,10 +141,12 @@
 
 <div class="en">
 <h1>Privacy Policy</h1>
-<p class="date">Bunker: Ark · updated 2 October 2026</p>
+<p class="date">Bunker: Ark · updated 3 October 2026</p>
 
 <h2>In short</h2>
-<p>The app requires no sign-up and never asks for your name or email. Everything
+<p>The app requires no sign-up and never asks for your name. It asks for an
+email in one case only — buying an “Everything” code (Google Play in Russia),
+for the receipt. Everything
 you type — player names and notes about them — stays on your device. What leaves
 it: anonymous gameplay statistics, crash reports and — unless you have a
 purchase — the data needed to show ads; details below.</p>
@@ -135,8 +162,9 @@ purchase — the data needed to show ads; details below.</p>
 
 <h2>What leaves the device</h2>
 <p><strong>The game itself needs no internet at all.</strong> A game is derived
-entirely from its code on your own device; there is no server, and the app works
-fully offline.</p>
+entirely from its code on your own device; there is no game server, and the app
+works fully offline. Our only server is used when buying a code — see “Buying a
+code”.</p>
 
 <p><strong>Anonymous statistics</strong> (Firebase Analytics, Google): events
 about the course of a game — app opened, game created, code handed out, result
@@ -175,9 +203,29 @@ see no ads, and the ad SDK is not started for them.</p>
 your card or payment details — only the fact of the purchase, the product and
 the price; this event is also recorded in the anonymous statistics.</p>
 
+<h2>Buying a code (Google Play in Russia)</h2>
+<p>Google Play does not accept payments from Russian accounts, so the game offers
+them an “Everything” code sold through the payment platform
+<a href="https://lava.top/docs/policy">lava.top</a> (LAVALANE LTD, Cyprus).</p>
+<ul>
+  <li><strong>The email</strong> you enter goes to our server and to lava.top —
+  for the receipt and to restore a lost code. No newsletters.</li>
+  <li><strong>lava.top processes the payment</strong>: you enter your card or
+  SBP details on its page; we never receive or store payment details.</li>
+  <li><strong>Our server stores</strong> the email, invoice number, the issued
+  code and random IDs of the devices the code is active on (three at most). The
+  device ID is made up by the app and is not tied to hardware or the advertising
+  identifier.</li>
+</ul>
+<p>The server runs on Cloudflare Workers (Cloudflare, Inc.,
+<a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy
+policy</a>). We keep this data while the code is valid and delete it on request
+to the address below.</p>
+
 <h2>Children</h2>
 <p>The game is meant for teenagers and adults and is not directed at children
-under 13. No personal data — name, email, phone — is collected from anyone.</p>
+under 13. No name or phone number is collected from anyone; an email only if
+entered when buying a code.</p>
 
 <h2>Permissions</h2>
 <p>The app requests no access to camera, microphone or contacts. The game itself
@@ -188,7 +236,8 @@ used for a single reminder a week later. Declining changes nothing.</p>
 
 <h2>Deleting your data</h2>
 <p>Deleting the app erases everything it stored. To have already-sent anonymous
-statistics removed, write to the address below. Ad data is held by Appodeal and
+statistics, or your email and code on our server, removed, write to the
+address below. Ad data is held by Appodeal and
 the ad networks; request its deletion via the Appodeal policy linked above, and
 cut the link to you by resetting the advertising identifier in your phone
 settings.</p>

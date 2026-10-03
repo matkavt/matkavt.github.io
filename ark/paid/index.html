@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бункер: Ковчег — оплата</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<!--
+  Сюда lava.top возвращает покупателя после оплаты кода «Всё включено»:
+  https://matkavt.github.io/ark/paid/?invoiceId=…&status=success|failed|cancelled
+  (параметры дописывает lava.top). Страница спрашивает наш сервер кодов
+  (Shelter/server) и показывает код. Игра получает его и сама — страница
+  нужна тем, кто закрыл игру или платил с другого устройства.
+
+  Исходник — Shelter/server/paid.html; на сайт кладётся в ark/paid/index.html
+  с подставленным адресом сервера (CODES_URL ниже).
+-->
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: #121110; color: #f2ebdc;
+    font: 17px/1.45 "PT Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex; flex-direction: column;
+  }
+  .stripe { height: 10px; background: repeating-linear-gradient(-45deg, #f5c31e 0 10px, transparent 10px 20px); }
+  main { width: 100%; max-width: 26rem; margin: 0 auto; padding: 2.2rem 1.5rem 1.5rem; flex: 1; }
+  .brand { font: 600 .95rem "Oswald", sans-serif; letter-spacing: .2em; color: #9c917c; text-align: center; }
+  h1 { font: 700 2rem/1.05 "Oswald", sans-serif; text-align: center; margin: .5rem 0 .8rem; text-transform: uppercase; }
+  p { color: #c8bfac; text-align: center; margin: .4rem 0; }
+  .code { margin: 1.4rem 0 0; padding: 1rem; border-radius: 14px; background: #201d18; text-align: center; display: none; }
+  .code small { display: block; font-size: .75rem; letter-spacing: .12em; color: #9c917c; }
+  .code b { display: block; font: 700 2.2rem "Oswald", sans-serif; letter-spacing: .1em; color: #f5c31e; margin: .2rem 0 .6rem; user-select: all; }
+  button { height: 42px; padding: 0 1.1rem; border-radius: 8px; border: 1.5px solid #f5c31e; background: transparent; color: #f2ebdc; font: 700 .95rem "PT Sans", sans-serif; cursor: pointer; }
+  footer { text-align: center; font-size: .8rem; color: #6f6656; padding: 1rem; }
+  a { color: #f5c31e; }
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<main>
+  <div class="brand">БУНКЕР: КОВЧЕГ</div>
+  <h1 id="title">Проверяем оплату</h1>
+  <p id="lead">Секунду — спрашиваем, дошла ли оплата.</p>
+  <div class="code" id="box">
+    <small>ВАШ КОД «ВСЁ ВКЛЮЧЕНО»</small>
+    <b id="code"></b>
+    <button id="copy" type="button">Скопировать</button>
+  </div>
+  <p id="hint"></p>
+</main>
+<footer>Вопросы — <a href="mailto:matkavt@gmail.com">matkavt@gmail.com</a></footer>
+<script>
+  const CODES_URL = 'https://ark-codes.ark-codes.workers.dev';
+  const params = new URLSearchParams(location.search);
+  const invoice = params.get('invoiceId');
+  const status = params.get('status');
+  const $ = (id) => document.getElementById(id);
+
+  function say(title, lead, hint) {
+    $('title').textContent = title;
+    $('lead').textContent = lead;
+    $('hint').textContent = hint || '';
+  }
+
+  if (!invoice) {
+    say('Нет номера оплаты', 'Похоже, страницу открыли не из оплаты.', '');
+  } else if (status === 'failed' || status === 'cancelled') {
+    say('Оплата не прошла', 'Деньги не списаны. Вернитесь в игру и попробуйте ещё раз.', '');
+  } else {
+    let tries = 0;
+    const poll = async () => {
+      tries++;
+      try {
+        const r = await fetch(`${CODES_URL}/invoice/${encodeURIComponent(invoice)}`);
+        const data = await r.json();
+        if (data.status === 'paid' && data.code) {
+          $('code').textContent = data.code;
+          $('box').style.display = 'block';
+          say('Готово', 'Вернитесь в игру — код подставится сам.',
+              'Сохраните код: он откроет «Всё включено» ещё на двух устройствах (в игре: «Всё включено» → «Ввести код»).');
+          return;
+        }
+        if (data.status === 'failed') {
+          say('Оплата не прошла', 'Деньги не списаны. Вернитесь в игру и попробуйте ещё раз.', '');
+          return;
+        }
+      } catch (_) { /* сеть моргнула — спросим ещё раз */ }
+      if (tries < 60) setTimeout(poll, 3000);
+      else say('Оплата ещё обрабатывается', 'Код появится в игре сам, как только оплата дойдёт.',
+               'Если за 10 минут не появился — напишите на почту ниже, приложите почту из оплаты.');
+    };
+    poll();
+  }
+
+  $('copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText($('code').textContent); $('copy').textContent = 'Скопировано'; }
+    catch (_) { $('copy').textContent = 'Выделите код и скопируйте'; }
+  });
+</script>
+</body>
+</html>

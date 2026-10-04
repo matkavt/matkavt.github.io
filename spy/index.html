@@ -1,5 +1,106 @@
 <!DOCTYPE html>
+<html lang="ru">
+<head>
 <meta charset="utf-8">
-<title>Redirecting to AppStore</title>
-<meta http-equiv="refresh" content="0; URL=https://apps.apple.com/ru/app/spy/id1436433223">
-<link rel="canonical" href="https://apps.apple.com/ru/app/spy/id1436433223">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шпион — вас зовут в игру</title>
+<meta name="description" content="Шпион: игра для компании на одном телефоне или с разных — iPhone и Android вместе.">
+<meta property="og:title" content="Шпион — вас зовут в игру">
+<meta property="og:description" content="Поставьте игру и откройте ссылку ещё раз — попадёте прямо в комнату.">
+<meta name="apple-itunes-app" content="app-id=1436433223">
+<!--
+  Сюда попадают по приглашению https://matkavt.github.io/spy?id=…, у кого игры НЕТ
+  (или ссылка открылась во встроенном браузере мессенджера). У кого есть — телефон
+  открывает приложение сразу: apple-app-site-association (spy/*) и
+  .well-known/assetlinks.json (com.matkavt.spy) в корне сайта.
+
+  id бывает двух видов: короткий код комнаты Firebase (6 знаков — его показываем,
+  чтобы ввести руками) и длинный шифр CloudKit со старых iPhone (его не показываем,
+  в нём нет смысла для человека). Страница ничего не хранит и никуда не ходит.
+  До 04.10.2026 здесь была переадресация всех в App Store — Android-друзья iPhone-хоста
+  попадали в магазин Apple.
+-->
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #121212; color: #f4f1ea;
+         font: 17px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; flex-direction: column; }
+  .stripe { height: 6px; background: #d0021b; }
+  main { width: 100%; max-width: 26rem; margin: 0 auto; padding: 2.4rem 1.5rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .icon { width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 1.1rem; display: block; box-shadow: 0 0 48px rgba(208, 2, 27, .25); }
+  h1 { font: 700 2rem/1.1 Georgia, "Times New Roman", serif; text-align: center; margin: .3rem 0 .7rem; letter-spacing: .02em; }
+  .lead { color: #bdb8ae; text-align: center; margin: 0; }
+  .code { margin: 1.6rem 0 0; padding: 1rem; border-radius: 14px; background: #1c1c1c; border: 1px solid #333; text-align: center; }
+  .code small { display: block; font-size: .75rem; letter-spacing: .12em; color: #8f8a80; }
+  .code b { display: block; font: 700 2.6rem Georgia, serif; letter-spacing: .16em; margin: .15rem 0 .5rem; }
+  .copy { height: 42px; padding: 0 1.1rem; border-radius: 10px; border: 1.5px solid #d0021b; background: transparent; color: #f4f1ea; font: inherit; font-weight: 700; font-size: .95rem; cursor: pointer; }
+  .buttons { display: flex; flex-direction: column; gap: .65rem; margin-top: 1.5rem; }
+  .btn { height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none;
+         font-weight: 700; font-size: 1.1rem; border: 2px solid #d0021b; color: #f4f1ea; }
+  .btn.primary { background: #d0021b; }
+  .note { margin-top: auto; padding-top: 1.5rem; font-size: .85rem; color: #8f8a80; text-align: center; }
+  .hidden { display: none; }
+  a:focus-visible, button:focus-visible { outline: 3px solid #f4f1ea; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<main>
+  <img class="icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/95/3b/7e/953b7ee3-3327-745f-acb3-5d2d33b73ac9/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg" alt="" onerror="this.style.display='none'">
+  <h1 data-t="title">Вас зовут в Шпиона</h1>
+  <p class="lead" data-t="lead">Поставьте игру и откройте эту ссылку ещё раз — попадёте прямо в комнату. iPhone и Android играют вместе.</p>
+
+  <div class="code hidden" id="codeBox">
+    <small data-t="codeLabel">КОД КОМНАТЫ</small>
+    <b id="code">—</b>
+    <button class="copy" id="copy" type="button" data-t="copy">Скопировать код</button>
+  </div>
+
+  <div class="buttons">
+    <a class="btn primary hidden" id="open" href="#" data-t="open">Открыть в игре</a>
+    <a class="btn" id="appstore" href="https://apps.apple.com/app/id1436433223" data-t="appstore">Скачать в App Store</a>
+    <a class="btn" id="play" href="https://play.google.com/store/apps/details?id=com.matkavt.spy&amp;referrer=utm_source%3Djoin_link" data-t="play">Скачать в Google Play</a>
+  </div>
+
+  <p class="note" data-t="note">Для игры с разных телефонов нужен интернет.</p>
+</main>
+<script>
+(function () {
+  var en = !/^(ru|uk|be|kk)/i.test(navigator.language || '');
+  var T = {
+    title: 'You’re invited to play Spy', lead: 'Install the game and open this link again — you’ll land right in the room. iPhone and Android play together.',
+    codeLabel: 'ROOM CODE', copy: 'Copy code', copied: 'Copied', open: 'Open in the game',
+    appstore: 'Download on the App Store', play: 'Get it on Google Play', note: 'Playing from different phones needs an internet connection.'
+  };
+  if (en) {
+    document.documentElement.lang = 'en'; document.title = 'Spy — you’re invited';
+    document.querySelectorAll('[data-t]').forEach(function (el) { var k = el.getAttribute('data-t'); if (T[k]) el.textContent = T[k]; });
+  }
+  var id = new URLSearchParams(location.search).get('id') || '';
+  var ua = navigator.userAgent || '';
+  var android = /Android/i.test(ua), ios = /iPhone|iPad|iPod/i.test(ua);
+  if (/^[A-Za-z0-9]{4,8}$/.test(id)) {
+    document.getElementById('code').textContent = id.toUpperCase();
+    document.getElementById('codeBox').classList.remove('hidden');
+    document.getElementById('copy').onclick = function () {
+      var b = this;
+      (navigator.clipboard ? navigator.clipboard.writeText(id.toUpperCase()) : Promise.reject()).then(function () { b.textContent = en ? T.copied : 'Скопировано'; }, function () {});
+    };
+  }
+  var playUrl = document.getElementById('play').href;
+  if (id) {
+    var open = document.getElementById('open');
+    // Android: intent-ссылка откроет игру в комнате, а если игры нет — Google Play.
+    // iPhone: схема spygame:// (сюда приходят, когда универсальная ссылка не сработала — например, во встроенном браузере).
+    open.href = android
+      ? 'intent://join/' + encodeURIComponent(id) + '#Intent;scheme=spygame;package=com.matkavt.spy;S.browser_fallback_url=' + encodeURIComponent(playUrl) + ';end'
+      : 'spygame://join/' + encodeURIComponent(id);
+    if (android || ios) open.classList.remove('hidden');
+  }
+  // Магазин своей платформы — первым.
+  if (android) { var p = document.getElementById('play'); p.classList.add('primary'); p.parentNode.insertBefore(p, document.getElementById('appstore')); }
+  if (ios) document.getElementById('appstore').classList.add('primary');
+})();
+</script>
+</body>
+</html>

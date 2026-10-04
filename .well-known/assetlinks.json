@@ -22,5 +22,18 @@
         "96:58:44:45:74:27:A5:73:8B:0A:6B:07:9F:76:04:F1:11:D9:EF:D2:7C:AD:F2:27:F5:E3:6F:68:7B:B0:B1:4E"
       ]
     }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.matkavt.spy",
+      "sha256_cert_fingerprints": [
+        "E8:64:DE:50:61:63:12:C6:E2:22:D2:A0:63:2D:A9:3B:AC:0C:07:10:BB:E6:C0:05:18:6F:1E:88:EB:F2:83:E8",
+        "1B:0E:BC:85:03:9A:EC:C4:9B:EC:A4:A9:4C:5F:AD:09:30:C9:9A:85:71:47:31:92:41:08:EC:84:4B:69:A1:58"
+      ]
+    }
   }
 ]

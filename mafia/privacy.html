@@ -23,30 +23,34 @@
 <body>
 
 <h1>Политика конфиденциальности</h1>
-<p class="date">«Мафия: ведущий в телефоне» · обновлено 1 октября 2026 года, к версии 1.1</p>
+<p class="date">«Мафия: ведущий в телефоне» · обновлено 6 октября 2026 года, к версии 1.2</p>
 
 <h2>Коротко</h2>
-<p>Приложение не собирает персональные данные и не требует регистрации. Всё,
-что вы вводите — имена игроков, — остаётся на вашем устройстве и никуда не
-отправляется. Наружу уходит только обезличенная статистика о ходе партии и
-отчёты о сбоях; подробности ниже.</p>
+<p>Приложение не требует регистрации и не спрашивает ни имени, ни почты. Всё,
+что вы вводите, — имена игроков, — остаётся на вашем устройстве и никуда не
+отправляется. Наружу уходят обезличенная статистика о ходе партии, отчёты о
+сбоях и — если вы смотрите ролик за награду — данные, нужные для показа
+рекламы; подробности ниже.</p>
 
 <h2>Что хранится на устройстве</h2>
 <ul>
   <li>Имена игроков, введённые для партии, и список имён прошлого стола;</li>
   <li>недоигранная партия: роли, кто выбыл, номер ночи;</li>
-  <li>настройки: колода, язык, выбранный голос ведущего.</li>
+  <li>настройки: колода, язык, выбранный голос ведущего;</li>
+  <li>судейский режим: ники игроков, протокол партии и рейтинг вечера.</li>
 </ul>
 <p>Эти данные лежат в памяти приложения и удаляются вместе с ним. Мы к ним
 доступа не имеем.</p>
 
 <h2>Что уходит наружу</h2>
 <p>Для игры интернет не нужен: без сети приложение работает полностью. Наружу
-уходят три вещи, и все можно назвать поимённо.</p>
+уходят три вещи, и все можно назвать поимённо; четвёртая — данные для рекламы,
+о ней в разделе «Реклама».</p>
 <p><b>Обезличенная статистика</b> (Firebase Analytics, Google): события о ходе
 партии — роли розданы, ночь закончилась и сколько она длилась, партия доиграна
 или брошена, какая колода, манера и голос ведущего, сколько игроков; пройдено
-ли знакомство, нажато ли «Поделиться», показана ли просьба об оценке. События
+ли знакомство, нажато ли «Поделиться», показана ли просьба об оценке; открыта
+ли витрина подписки, оформлена ли подписка, досмотрен ли ролик. События
 привязаны к случайному идентификатору установки, который не связан с вами и
 меняется при переустановке. В них нет ни имён игроков, ни ролей конкретных
 людей.</p>
@@ -59,16 +63,54 @@
 <p>Обработчик статистики и отчётов — Google LLC,
 <a href="https://policies.google.com/privacy">политика Google</a>.</p>
 
+<h2>Игра с разных телефонов</h2>
+<p>Только если стол сам выберет «Каждый со своего телефона» — тогда нужен
+интернет. Чтобы правила сервера отличали хозяина комнаты от гостей, телефон
+получает <b>анонимный идентификатор</b> Firebase Authentication — без
+аккаунта, почты и телефона; такие идентификаторы сервер удаляет сам через
+30 дней. На время партии в Firebase Realtime Database (Google, хранилище в
+Бельгии) лежат <b>имя, которое игрок ввёл за столом</b>, его место, роль и
+ночные ходы. Роль видят только сам игрок и телефон хозяина. Хозяин стирает
+комнату в конце партии; брошенную комнату удаляет сервис через 12 часов.</p>
+
+<h2>Реклама</h2>
+<p>Реклама в «Мафии» одна — ролик, который можно посмотреть по желанию, чтобы
+открыть платную колоду на одну партию. Баннеров и рекламы посреди партии нет.
+Ролик показывает <a href="https://appodeal.com/privacy-policy/">Appodeal</a>
+вместе с рекламными сетями, с которыми он работает.</p>
+<p>Чтобы показать и посчитать ролик, рекламные SDK получают: рекламный
+идентификатор устройства (на iPhone — только если вы разрешили отслеживание),
+модель устройства и версию системы, язык, IP-адрес и определённое по нему
+приблизительное местоположение, а также сведения о показах и нажатиях. Имена
+игроков и содержимое партии в рекламу не попадают.</p>
+<p>В Европейском союзе и Великобритании до любой рекламы показывается форма
+согласия (GDPR). Если вы отказали в ней, на iPhone вопрос об отслеживании не
+задаётся вовсе. Если согласились — система iOS отдельно спросит, можно ли
+отслеживать; отказ ничего не ломает, реклама просто будет не
+персонализированной. Геопозицию и календарь сама игра не использует; спросить
+о них может только рекламное объявление, и отказ ни на что не влияет.</p>
+<p>У подписчиков «Мафии+» и у тех, кто играл до появления подписки, рекламы
+нет, и рекламный SDK у них не запускается.</p>
+
+<h2>Подписка</h2>
+<p>Оплату «Мафии+» целиком проводит App Store или Google Play. Мы не видим ни
+карты, ни платёжных данных — только факт подписки, её срок и товар; это
+событие отмечается и в обезличенной статистике. Отменить подписку можно в
+любой момент в настройках App Store или Google Play.</p>
+
 <h2>Чего нет</h2>
 <ul>
-  <li>Рекламы и рекламных идентификаторов;</li>
-  <li>отслеживания между приложениями и сайтами;</li>
-  <li>продажи или передачи данных кому-либо, кроме обработчика выше.</li>
+  <li>Регистрации, имени, почты и телефона;</li>
+  <li>отслеживания без вашего разрешения;</li>
+  <li>продажи данных — передаём только обработчикам, названным выше.</li>
 </ul>
 
 <h2>Удаление данных</h2>
 <p>Удаление приложения стирает всё, что оно хранило. Чтобы удалить уже
-отправленную обезличенную статистику, напишите на адрес ниже — уберём.</p>
+отправленную обезличенную статистику, напишите на адрес ниже — уберём. Данные
+рекламы хранят Appodeal и рекламные сети; запрос на их удаление — по ссылке на
+политику Appodeal выше, а связь с вами рвётся сбросом рекламного
+идентификатора в настройках телефона.</p>
 
 <h2>Дети</h2>
 <p>Приложение не предназначено для детей младше 12 лет. Персональные данные не
@@ -86,30 +128,34 @@
 <div class="en" lang="en">
 
 <h1>Privacy policy</h1>
-<p class="date">“Mafia: Host in Your Pocket” · updated 1 October 2026, for version 1.1</p>
+<p class="date">“Mafia: Host in Your Pocket” · updated October 6, 2026, for version 1.2</p>
 
 <h2>In short</h2>
-<p>The app collects no personal data and requires no sign-up. Everything you
-type — player names — stays on your device. Only anonymous gameplay statistics
-and crash reports leave it; details below.</p>
+<p>The app requires no sign-up and never asks for your name or email.
+Everything you type — player names — stays on your device. What leaves it:
+anonymous gameplay statistics, crash reports and — if you watch a rewarded ad —
+the data needed to show it; details below.</p>
 
 <h2>What is stored on the device</h2>
 <ul>
   <li>Player names entered for the game and the previous table’s roster;</li>
   <li>an unfinished game: roles, who is out, the night number;</li>
-  <li>settings: deck, language, chosen narrator voice.</li>
+  <li>settings: deck, language, chosen narrator voice;</li>
+  <li>judge mode: player nicknames, the game sheet and the evening standings.</li>
 </ul>
 <p>This data lives in the app’s storage and is deleted with the app. We have no
 access to it.</p>
 
 <h2>What leaves the device</h2>
 <p>Playing needs no internet; the app works fully offline. Three things leave
-the device, and each can be named.</p>
+the device, and each can be named; a fourth — data for advertising — is
+covered under “Advertising”.</p>
 <p><b>Anonymous statistics</b> (Firebase Analytics, Google): events about the
 course of a game — roles dealt, a night finished and how long it took, a game
 finished or abandoned, which deck, host style and voice, how many players;
 whether the intro was completed, whether Share was tapped, whether a rating
-request was shown. Events are tied to a random installation identifier that is
+request was shown; whether the subscription screen was opened, a subscription
+started, an ad watched to the end. Events are tied to a random installation identifier that is
 not linked to you and changes when the app is reinstalled. They contain no
 player names and no roles of particular people.</p>
 <p><b>Crash reports</b> (Firebase Crashlytics, Google): if the app crashes, a
@@ -121,16 +167,55 @@ Nothing describing you is transmitted.</p>
 <p>Data processor for statistics and reports: Google LLC,
 <a href="https://policies.google.com/privacy">Google privacy policy</a>.</p>
 
+<h2>Playing on separate phones</h2>
+<p>Only if the table chooses “One phone per player” — this needs the
+internet. So that the server rules can tell the room host from the guests, the
+phone gets an <b>anonymous identifier</b> from Firebase Authentication — no
+account, email or phone number; the server deletes such identifiers on its own
+after 30 days. For the duration of a game, Firebase Realtime Database (Google,
+stored in Belgium) holds <b>the name the player typed at the table</b>, their
+seat, role and night moves. A role is visible only to that player and to the
+host’s phone. The host erases the room when the game ends; an abandoned room
+is deleted after 12 hours.</p>
+
+<h2>Advertising</h2>
+<p>There is one kind of ad in Mafia — an optional video you can watch to unlock
+a paid deck for one game. There are no banners and no ads during a game. The
+video is shown by <a href="https://appodeal.com/privacy-policy/">Appodeal</a>
+together with the ad networks it works with.</p>
+<p>To show and count the ad, ad SDKs receive: the device advertising identifier
+(on iPhone only if you allowed tracking), device model and system version,
+language, IP address and the approximate location derived from it, and
+information about impressions and taps. Player names and game content never
+reach advertising.</p>
+<p>In the European Union and the United Kingdom a consent form (GDPR) appears
+before any ad. If you decline it, the iPhone tracking question is never asked.
+If you agree, iOS asks separately whether tracking is allowed; declining breaks
+nothing, the ad is simply not personalised. The game itself never uses your
+location or calendar; only an ad may ask for them, and declining changes
+nothing.</p>
+<p>Mafia+ subscribers and people who played before the subscription existed see
+no ads, and the ad SDK does not start for them.</p>
+
+<h2>Subscription</h2>
+<p>Payment for Mafia+ is handled entirely by the App Store or Google Play. We
+never see your card or payment details — only that you subscribed, the term and
+the product; this is also recorded in the anonymous statistics. You can cancel
+any time in App Store or Google Play settings.</p>
+
 <h2>What is absent</h2>
 <ul>
-  <li>Advertising and advertising identifiers;</li>
-  <li>tracking across apps and websites;</li>
-  <li>selling or sharing data with anyone other than the processor above.</li>
+  <li>Sign-up, name, email or phone;</li>
+  <li>tracking without your permission;</li>
+  <li>selling data — we share it only with the processors named above.</li>
 </ul>
 
 <h2>Data deletion</h2>
 <p>Deleting the app erases everything it stored. To delete anonymous statistics
-already sent, email the address below and we will remove it.</p>
+already sent, email the address below and we will remove it. Advertising data
+is kept by Appodeal and the ad networks; request its deletion via the Appodeal
+policy linked above, and break the link to you by resetting the advertising
+identifier in your phone settings.</p>
 
 <h2>Children</h2>
 <p>The app is not directed to children under 12. No personal data is collected

@@ -2545,6 +2545,8 @@ admanmedia.com, 2411, RESELLER
 openx.com, 543888036, RESELLER, 6a698e2ec38604c6
 thebrave.io, 1234765, RESELLER, c25b2154543746ac
 yandex.com, 91706968, DIRECT
+yandex.com, 332505367, DIRECT
+yango-ads.com, 332505367, DIRECT
 playdigo.com, 1988, RESELLER, 92011346d63d3c30
 start.io, 168507669, RESELLER
 video.unrulymedia.com, 3890682751, RESELLER, 98c21ef9a666c68b

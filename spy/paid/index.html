@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шпион — оплата</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+<!--
+  Сюда lava.top возвращает покупателя после оплаты кода «Всё и навсегда» «Шпиона»:
+  https://matkavt.github.io/spy/paid/?invoiceId=…&status=success|failed|cancelled
+  (параметры дописывает lava.top). Страница спрашивает наш сервер кодов (SpyAndroid/server) и
+  показывает код. Игра получает его и сама — страница нужна тем, кто закрыл игру или платил с
+  другого устройства.
+
+  Исходник — SpyAndroid/server/paid.html (копия страницы «Бункера» в цветах «Шпиона»); на сайт
+  кладётся в spy/paid/index.html с подставленным адресом сервера (CODES_URL ниже).
+-->
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: #141415; color: #f0edf0;
+    font: 17px/1.45 "Jost", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex; flex-direction: column;
+  }
+  .bar { height: 6px; background: #af1b1b; }
+  main { width: 100%; max-width: 26rem; margin: 0 auto; padding: 2.2rem 1.5rem 1.5rem; flex: 1; }
+  .brand { font-weight: 600; font-size: .95rem; letter-spacing: .2em; color: #8e8a90; text-align: center; }
+  h1 { font-weight: 600; font-size: 2rem; line-height: 1.1; text-align: center; margin: .5rem 0 .8rem; font-variant: small-caps; letter-spacing: .04em; }
+  p { color: #c9c5ca; text-align: center; margin: .4rem 0; }
+  .code { margin: 1.4rem 0 0; padding: 1rem; border-radius: 12px; border: 2px solid #3c3c43; text-align: center; display: none; }
+  .code small { display: block; font-size: .75rem; letter-spacing: .12em; color: #8e8a90; }
+  .code b { display: block; font-weight: 600; font-size: 2.1rem; letter-spacing: .1em; color: #f0edf0; margin: .2rem 0 .6rem; user-select: all; }
+  button { height: 44px; padding: 0 1.2rem; border-radius: 8px; border: 0; background: #af1b1b; color: #f0edf0; font: 600 .95rem "Jost", sans-serif; cursor: pointer; }
+  footer { text-align: center; font-size: .8rem; color: #6f6b72; padding: 1rem; }
+  a { color: #e05555; }
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<main>
+  <div class="brand">ШПИОН</div>
+  <h1 id="title">Проверяем оплату</h1>
+  <p id="lead">Секунду — спрашиваем, дошла ли оплата.</p>
+  <div class="code" id="box">
+    <small>ВАШ КОД «ВСЁ И НАВСЕГДА»</small>
+    <b id="code"></b>
+    <button id="copy" type="button">Скопировать</button>
+  </div>
+  <p id="hint"></p>
+</main>
+<footer>Вопросы — <a href="mailto:matkavt@gmail.com">matkavt@gmail.com</a></footer>
+<script>
+  const CODES_URL = 'https://spy-codes.ark-codes.workers.dev';
+  const params = new URLSearchParams(location.search);
+  const invoice = params.get('invoiceId');
+  const status = params.get('status');
+  const $ = (id) => document.getElementById(id);
+
+  function say(title, lead, hint) {
+    $('title').textContent = title;
+    $('lead').textContent = lead;
+    $('hint').textContent = hint || '';
+  }
+
+  if (!invoice) {
+    say('Нет номера оплаты', 'Похоже, страницу открыли не из оплаты.', '');
+  } else if (status === 'failed' || status === 'cancelled') {
+    say('Оплата не прошла', 'Деньги не списаны. Вернитесь в игру и попробуйте ещё раз.', '');
+  } else {
+    let tries = 0;
+    const poll = async () => {
+      tries++;
+      try {
+        const r = await fetch(`${CODES_URL}/invoice/${encodeURIComponent(invoice)}`);
+        const data = await r.json();
+        if (data.status === 'paid' && data.code) {
+          $('code').textContent = data.code;
+          $('box').style.display = 'block';
+          say('Готово', 'Вернитесь в игру — код подставится сам: реклама уйдёт, все наборы откроются.',
+              'Сохраните код: он откроет «Всё и навсегда» ещё на двух устройствах (в игре — «Ввести код» в главном меню).');
+          return;
+        }
+        if (data.status === 'failed') {
+          say('Оплата не прошла', 'Деньги не списаны. Вернитесь в игру и попробуйте ещё раз.', '');
+          return;
+        }
+      } catch (_) { /* сеть моргнула — спросим ещё раз */ }
+      if (tries < 60) setTimeout(poll, 3000);
+      else say('Оплата ещё обрабатывается', 'Код появится в игре сам, как только оплата дойдёт.',
+               'Если за 10 минут не появился — напишите на почту ниже, приложите почту из оплаты.');
+    };
+    poll();
+  }
+
+  $('copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText($('code').textContent); $('copy').textContent = 'Скопировано'; }
+    catch (_) { $('copy').textContent = 'Выделите код и скопируйте'; }
+  });
+</script>
+</body>
+</html>

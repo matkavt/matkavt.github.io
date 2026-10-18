@@ -86,6 +86,19 @@
     });
   }
 
+  // Метка источника: `?from=table` — QR «Поставить себе» на итоге партии
+  // (lib/core/share.dart в приложении). Уходит в кампанию App Store (ct) и
+  // в referrer Play, чтобы установки со стола было видно отдельно от
+  // ссылок «Поделиться». Без метки ссылки прежние.
+  var from = (location.search.match(/[?&]from=([a-z_]{1,20})/) || [])[1];
+  if (from) {
+    document.getElementById('appstore').href =
+      'https://apps.apple.com/app/id6813280622?pt=118685303&ct=mafia_' + from + '&mt=8';
+    document.getElementById('play').href =
+      'https://play.google.com/store/apps/details?id=com.matkavt.mafia&referrer=' +
+      encodeURIComponent('utm_source=' + from + '&utm_campaign=mafia_' + from);
+  }
+
   // Нужный магазин — первым и залитым. Без переадресации: если приложение
   // ещё не вышло в одном из магазинов, человек увидит второй, а не пустоту.
   var ua = navigator.userAgent || '';

@@ -19,6 +19,10 @@
   в нём нет смысла для человека). Страница ничего не хранит и никуда не ходит.
   До 04.10.2026 здесь была переадресация всех в App Store — Android-друзья iPhone-хоста
   попадали в магазин Apple.
+
+  Без id (ссылка ?from=share из «Поделиться» после партии, iOS и Android) — общий текст
+  про игру, и телефон сразу уходит в свой магазин: друг с iPhone — в App Store, с Android —
+  в Google Play. Метки: Play referrer utm_source=share_card, App Store кампания ct=spy_share.
 -->
 <style>
   :root { color-scheme: dark; }
@@ -88,6 +92,23 @@
     };
   }
   var playUrl = document.getElementById('play').href;
+  if (!id) {
+    // Ссылка «Поделиться» после партии: комнаты нет — общий текст и магазин своей платформы.
+    var G = en
+      ? { title: 'Spy — the party game', lead: 'One of you is the spy, everyone else knows the secret word. iPhone and Android play together.' }
+      : { title: 'Шпион — игра для компании', lead: 'Один из вас — шпион, остальные знают тайное слово. iPhone и Android играют вместе.' };
+    document.title = G.title;
+    document.querySelector('[data-t="title"]').textContent = G.title;
+    document.querySelector('[data-t="lead"]').textContent = G.lead;
+    var share = new URLSearchParams(location.search).get('from') === 'share';
+    if (share) {
+      var app = document.getElementById('appstore'), play = document.getElementById('play');
+      app.href = 'https://apps.apple.com/app/id1436433223?pt=118685303&ct=spy_share&mt=8';
+      play.href = playUrl = 'https://play.google.com/store/apps/details?id=com.matkavt.spy&referrer=utm_source%3Dshare_card';
+      if (android) location.replace(play.href);
+      else if (ios) location.replace(app.href);
+    }
+  }
   if (id) {
     var open = document.getElementById('open');
     // Android: intent-ссылка откроет игру в комнате, а если игры нет — Google Play.

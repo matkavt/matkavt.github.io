@@ -23,14 +23,14 @@
 <body>
 
 <h1>Политика конфиденциальности</h1>
-<p class="date">«Бункер: Ковчег» · обновлено 13 октября 2026 года</p>
+<p class="date">«Бункер: Ковчег» · обновлено 22 октября 2026 года</p>
 
 <h2>Коротко</h2>
 <p>Приложение не требует регистрации и не спрашивает имени. Почту оно просит
 в одном случае — если вы покупаете код «Всё включено» (Google Play в России),
 для чека. Всё,
 что вы вводите — имена игроков и заметки о них, — остаётся на вашем устройстве
-и никуда не отправляется. Наружу уходят обезличенная статистика о ходе партии,
+и никуда не отправляется. Наружу уходят обезличенная статистика использования,
 отчёты о сбоях и — если у вас нет покупки — данные, нужные для показа рекламы;
 подробности ниже.</p>
 
@@ -44,18 +44,19 @@
 <p>Всё это лежит в памяти приложения и удаляется вместе с ним.</p>
 
 <h2>Что уходит наружу</h2>
-<p><strong>Сама игра не требует интернета вообще.</strong> Партия целиком
-выводится из кода игры на вашем устройстве, игрового сервера у нас нет, и без
-сети приложение работает полностью.</p>
+<p><strong>Для самой партии интернет не нужен:</strong> она выводится из кода
+игры на вашем устройстве, игрового сервера у нас нет.</p>
 
-<p>Наружу уходят три вещи, и все можно назвать поимённо. Четвёртая — только
-у тех, кто покупает код, о ней в разделе «Покупка кода».</p>
+<p>Наружу уходит следующее (у тех, кто покупает код, — ещё данные из раздела
+«Покупка кода»).</p>
 
-<p><strong>Обезличенная статистика</strong> (Firebase Analytics, Google):
-события о ходе партии — приложение открыли, партию создали, код раздали, дошли
-до итога. В них нет ни имён игроков, ни ваших заметок, ни самого кода игры:
-вместо кода отправляется короткий необратимый хеш из четырёх знаков. Он нужен
-ровно для одного — увидеть, что за одной партией сидело несколько телефонов.</p>
+<p><strong>Обезличенная статистика и настройки</strong> (Firebase Analytics и
+Remote Config, Google): события об использовании приложения — например,
+приложение открыли, партию начали и доиграли, — а в бесплатной версии ещё
+сведения о показах рекламы (формат, рекламная сеть, доход с показа). Имён
+игроков, заметок и содержимого партии в статистике нет; вместо кода игры
+уходит короткий необратимый хеш, по которому видно, что несколько телефонов
+играли одну партию.</p>
 
 <p><strong>Отчёты о сбоях</strong> (Firebase Crashlytics, Google): если
 приложение упало, уходит техническое описание — место в коде, модель
@@ -67,9 +68,8 @@
 <p>Третья — данные для рекламы; о ней в разделе «Реклама».</p>
 
 <h2>Реклама</h2>
-<p>В бесплатной версии есть реклама: баннер внизу экрана, межстраничная
-реклама между партиями (не в первых двух) и ролик, который можно посмотреть
-по желанию, чтобы открыть набор карточек на одну партию. Рекламу показывает
+<p>В бесплатной версии есть реклама: баннер, полноэкранная реклама и ролик,
+который можно посмотреть по желанию за награду в игре. Рекламу показывает
 <a href="https://appodeal.com/privacy-policy/">Appodeal</a> вместе с
 рекламными сетями, с которыми он работает.</p>
 <p>Чтобы показать и посчитать рекламу, рекламные SDK получают: рекламный
@@ -83,8 +83,7 @@
 отслеживать; отказ ничего не ломает, реклама просто будет не
 персонализированной. Сбросить рекламный идентификатор или запретить
 персонализацию можно в настройках телефона.</p>
-<p>Купившим «Всё включено» и тем, кто играл до появления покупок, реклама не
-показывается, и рекламный SDK у них не запускается.</p>
+<p>Купившим «Всё включено» реклама не показывается.</p>
 
 <h2>Покупки</h2>
 <p>Оплату целиком проводит App Store или Google Play. Мы не видим ни карты, ни
@@ -94,16 +93,14 @@
 <h2>Покупка кода (Google Play в России)</h2>
 <p>Google Play не принимает оплату у российских аккаунтов, поэтому им игра
 предлагает купить код «Всё включено» через платёжную платформу
-<a href="https://lava.top/docs/policy">lava.top</a> (LAVALANE LTD, Кипр). Это
-единственный случай, когда приложение обращается к нашему серверу.</p>
+<a href="https://lava.top/docs/policy">lava.top</a> (LAVALANE LTD, Кипр).</p>
 <ul>
   <li><strong>Почта</strong>, которую вы ввели, уходит на наш сервер и в
-  lava.top — для чека и чтобы восстановить код, если он потерялся. Рассылок
-  нет.</li>
+  lava.top — для чека и чтобы восстановить код, если он потерялся.</li>
   <li><strong>Оплату проводит lava.top</strong>: карту или СБП вы вводите на
   её странице, мы платёжных данных не получаем и не храним.</li>
   <li><strong>Наш сервер хранит</strong> почту, номер счёта, выданный код и
-  случайные номера устройств, на которых код включён (не больше трёх). Номер
+  случайные номера устройств, на которых код включён. Номер
   устройства приложение придумывает само, с железом и рекламным
   идентификатором он не связан.</li>
 </ul>
@@ -118,12 +115,10 @@
 если её ввели при покупке кода.</p>
 
 <h2>Права</h2>
-<p>Приложение не запрашивает доступ ни к камере, ни к микрофону, ни к контактам.
-Геопозицию сама игра не использует; запросить её или доступ к календарю
-может только рекламное объявление — система при этом спросит вас, и отказ
-ни на что не влияет.</p>
-<p>Разрешение на уведомления спрашивается один раз, после первой доигранной
-партии, и нужно ровно для одного напоминания через неделю. Отказ ни на что не
+<p>Самой игре не нужен доступ к камере, микрофону, контактам и геопозиции.
+Если какой-то доступ запросит рекламное объявление, система спросит вас, и
+отказ ни на что не влияет.</p>
+<p>Разрешение на уведомления нужно для напоминаний об игре. Отказ ни на что не
 влияет.</p>
 
 <h2>Удаление данных</h2>
@@ -141,14 +136,14 @@
 
 <div class="en">
 <h1>Privacy Policy</h1>
-<p class="date">Bunker: Ark · updated 13 October 2026</p>
+<p class="date">Bunker: Ark · updated 22 October 2026</p>
 
 <h2>In short</h2>
 <p>The app requires no sign-up and never asks for your name. It asks for an
 email in one case only — buying an “Everything” code (Google Play in Russia),
 for the receipt. Everything
 you type — player names and notes about them — stays on your device. What leaves
-it: anonymous gameplay statistics, crash reports and — unless you have a
+it: anonymous usage statistics, crash reports and — unless you have a
 purchase — the data needed to show ads; details below.</p>
 
 <h2>Stored on your device</h2>
@@ -161,16 +156,16 @@ purchase — the data needed to show ads; details below.</p>
 <p>All of it is removed together with the app.</p>
 
 <h2>What leaves the device</h2>
-<p><strong>The game itself needs no internet at all.</strong> A game is derived
-entirely from its code on your own device; there is no game server, and the app
-works fully offline. Our only server is used when buying a code — see “Buying a
-code”.</p>
+<p><strong>A game itself needs no internet:</strong> it is derived from its
+code on your own device; there is no game server. People who buy a code also
+send the data described in “Buying a code”.</p>
 
-<p><strong>Anonymous statistics</strong> (Firebase Analytics, Google): events
-about the course of a game — app opened, game created, code handed out, result
-reached. They contain no player names, no notes and not even the game code:
-instead a short irreversible four-character hash is sent, used only to see that
-several phones sat at one table.</p>
+<p><strong>Anonymous statistics and settings</strong> (Firebase Analytics and
+Remote Config, Google): events about using the app — for example, app opened,
+game started and finished — and, in the free version, information about ad
+impressions (format, ad network, revenue per impression). They contain no
+player names, notes or game content; instead of the game code a short
+irreversible hash is sent, which shows that several phones played one game.</p>
 
 <p><strong>Crash reports</strong> (Firebase Crashlytics, Google): if the app
 crashes, a technical description is sent — the place in the code, device model,
@@ -180,9 +175,8 @@ system version. No game content is included.</p>
 <a href="https://policies.google.com/privacy">Google privacy policy</a>.</p>
 
 <h2>Ads</h2>
-<p>The free version shows ads: a banner at the bottom of the screen, an
-interstitial between games (not in the first two), and an optional video you can watch to
-unlock a card set for one game. Ads are served by
+<p>The free version shows ads: a banner, full-screen ads and an optional
+video you can watch for an in-game reward. Ads are served by
 <a href="https://appodeal.com/privacy-policy/">Appodeal</a> together with the
 ad networks it works with.</p>
 <p>To show and count ads, the ad SDKs receive: the device advertising
@@ -195,8 +189,7 @@ ad. If you decline it, the iPhone tracking question is never asked. If you
 agree, iOS asks separately whether tracking is allowed; declining breaks
 nothing, ads are simply not personalised. You can reset the advertising
 identifier or turn off personalisation in your phone settings.</p>
-<p>People who bought “Everything” and those who played before purchases existed
-see no ads, and the ad SDK is not started for them.</p>
+<p>People who bought “Everything” see no ads.</p>
 
 <h2>Purchases</h2>
 <p>Payment is handled entirely by the App Store or Google Play. We never see
@@ -209,11 +202,11 @@ them an “Everything” code sold through the payment platform
 <a href="https://lava.top/docs/policy">lava.top</a> (LAVALANE LTD, Cyprus).</p>
 <ul>
   <li><strong>The email</strong> you enter goes to our server and to lava.top —
-  for the receipt and to restore a lost code. No newsletters.</li>
+  for the receipt and to restore a lost code.</li>
   <li><strong>lava.top processes the payment</strong>: you enter your card or
   SBP details on its page; we never receive or store payment details.</li>
   <li><strong>Our server stores</strong> the email, invoice number, the issued
-  code and random IDs of the devices the code is active on (three at most). The
+  code and random IDs of the devices the code is active on. The
   device ID is made up by the app and is not tied to hardware or the advertising
   identifier.</li>
 </ul>
@@ -228,11 +221,10 @@ under 13. No name or phone number is collected from anyone; an email only if
 entered when buying a code.</p>
 
 <h2>Permissions</h2>
-<p>The app requests no access to camera, microphone or contacts. The game itself
-does not use your location; only an ad may ask for location or calendar access —
-the system will ask you, and declining changes nothing.
-Notification permission is asked once, after your first finished game, and is
-used for a single reminder a week later. Declining changes nothing.</p>
+<p>The game itself needs no access to camera, microphone, contacts or location.
+If an ad asks for any access, the system will ask you, and declining changes
+nothing. Notification permission is used for game reminders; declining changes
+nothing.</p>
 
 <h2>Deleting your data</h2>
 <p>Deleting the app erases everything it stored. To have already-sent anonymous

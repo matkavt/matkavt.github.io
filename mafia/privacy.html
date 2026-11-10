@@ -23,7 +23,7 @@
 <body>
 
 <h1>Политика конфиденциальности</h1>
-<p class="date">«Мафия: ведущий в телефоне» · обновлено 6 октября 2026 года, к версии 1.2</p>
+<p class="date">«Мафия: ведущий в телефоне» · обновлено 10 ноября 2026 года, к версии 1.4.6</p>
 
 <h2>Коротко</h2>
 <p>Приложение не требует регистрации и не спрашивает ни имени, ни почты. Всё,
@@ -57,9 +57,20 @@
 <p><b>Отчёты о сбоях</b> (Firebase Crashlytics, Google): если приложение упало,
 уходит техническое описание — место в коде, модель устройства, версия системы.
 Содержимого партии в отчёте нет.</p>
-<p><b>Дополнительный голос ведущего</b> — только если вы сами выберете его в
-настройках: файл скачивается с публичного хранилища моделей проекта sherpa-onnx
-на GitHub. При этом не передаётся ничего, что вас описывает.</p>
+<p><b>Голос ведущего</b> — нейросетевая модель Supertonic 3 (Supertone Inc.),
+речь синтезируется на телефоне. Модель скачивается один раз: на Wi-Fi — сама,
+через мобильную сеть — только если вы нажмёте «Скачать». Файлы берутся из
+нашего хранилища на GitHub (github.com/matkavt/mafia-voices), запасной
+источник — публичное хранилище моделей проекта sherpa-onnx на GitHub; так же
+скачиваются и другие голоса, если вы выберете их в настройках. При скачивании
+не передаётся ничего, что вас описывает; GitHub, как любой сервер, видит
+адрес подключения.</p>
+<p><b>Лицензия голоса.</b> Модель Supertonic 3 распространяется по лицензии
+BigScience Open RAIL-M. Пользуясь ведущим, вы соглашаетесь не применять модель
+и созданную ею речь для целей, которые лицензия запрещает (приложение A): в
+нарушение закона, для подделки чужого голоса, для выдачи машинной речи за
+человеческую, для травли, обмана и дискриминации. Полный текст лицензии — в
+приложении: «Голос ведущего» → «Лицензии».</p>
 <p>Обработчик статистики и отчётов — Google LLC,
 <a href="https://policies.google.com/privacy">политика Google</a>.</p>
 
@@ -128,7 +139,7 @@
 <div class="en" lang="en">
 
 <h1>Privacy policy</h1>
-<p class="date">“Mafia: Host in Your Pocket” · updated October 6, 2026, for version 1.2</p>
+<p class="date">“Mafia: Host in Your Pocket” · updated November 10, 2026, for version 1.4.6</p>
 
 <h2>In short</h2>
 <p>The app requires no sign-up and never asks for your name or email.
@@ -161,9 +172,19 @@ player names and no roles of particular people.</p>
 <p><b>Crash reports</b> (Firebase Crashlytics, Google): if the app crashes, a
 technical description is sent — the place in the code, device model, system
 version. No game content is included.</p>
-<p><b>An extra narrator voice</b> — only if you choose one in the settings: the
-file comes from the public model storage of the sherpa-onnx project on GitHub.
-Nothing describing you is transmitted.</p>
+<p><b>The narrator voice</b> is the Supertonic 3 neural model (Supertone Inc.);
+speech is synthesized on the phone. The model downloads once: on Wi-Fi by
+itself, on mobile data only if you tap “Download”. Files come from our storage
+on GitHub (github.com/matkavt/mafia-voices), with the public model storage of
+the sherpa-onnx project on GitHub as a fallback; other voices you pick in the
+settings download the same way. Nothing describing you is transmitted; like
+any server, GitHub sees the connection address.</p>
+<p><b>Voice license.</b> The Supertonic 3 model is distributed under the
+BigScience Open RAIL-M license. By using the narrator you agree not to use the
+model or the speech it produces for purposes the license prohibits (Attachment
+A): breaking the law, impersonating someone’s voice, passing machine speech off
+as human, harassment, deception or discrimination. The full license text is in
+the app: “Host voice” → “Licenses”.</p>
 <p>Data processor for statistics and reports: Google LLC,
 <a href="https://policies.google.com/privacy">Google privacy policy</a>.</p>
 

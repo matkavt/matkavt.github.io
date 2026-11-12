@@ -445,6 +445,8 @@ bigo.sg, 136, RESELLER
 bigo.sg, 196, RESELLER
 bigo.sg,1112518,reseller
 bigo.sg,1114681,RESELLER
+bigo.sg,y0hkbizzwn,DIRECT
+bigo.sg,y0hkbizzwn,RESELLER
 bizzclick.com, 30, RESELLER, 7e936b1feafdaa61
 blasto.ai,354,RESELLER
 blis.com,33,RESELLER,61453ae19a4b73f4

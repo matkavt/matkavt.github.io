@@ -63,7 +63,7 @@
   </div>
 
   <div class="stores" id="stores">
-    <a class="store" id="appstore" href="https://apps.apple.com/app/id6801599101" data-t="appstore">Скачать в App Store</a>
+    <a class="store" id="appstore" href="https://apps.apple.com/app/apple-store/id6801599101?pt=118685303&amp;ct=ark_link&amp;mt=8" data-t="appstore">Скачать в App Store</a>
     <a class="store" id="play" href="https://play.google.com/store/apps/details?id=com.matkavt.shelter&amp;referrer=utm_source%3Djoin_link" data-t="play">Скачать в Google Play</a>
   </div>
 
@@ -97,6 +97,16 @@
   } else {
     box.classList.add('hidden');   // приглашение без кода: просто «сыграйте и вы»
   }
+
+  // Метки кампаний (15.11.2026): со ссылкой на партию пришли из лобби (QR или «Отправить
+  // ссылку»), без кода — из «Отправить журнал в чат». В App Store Connect → Campaigns и в
+  // рефералах Play видно, сколько установок даёт каждый путь.
+  var campaign = /^[0-9A-Z]{8}$/.test(clean) ? 'invite' : 'finale';
+  document.getElementById('appstore').href =
+    'https://apps.apple.com/app/apple-store/id6801599101?pt=118685303&ct=ark_' + campaign + '&mt=8';
+  document.getElementById('play').href =
+    'https://play.google.com/store/apps/details?id=com.matkavt.shelter&referrer=' +
+    encodeURIComponent('utm_source=join_link&utm_campaign=' + campaign);
 
   document.getElementById('copy').addEventListener('click', function () {
     var btn = this, text = document.getElementById('code').textContent;

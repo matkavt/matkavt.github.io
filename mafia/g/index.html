@@ -58,7 +58,7 @@
   </div>
   <div class="brand" data-t="brand">МАФИЯ</div>
   <h1 data-t="title">Вас зовут за стол</h1>
-  <p class="lead" data-t="lead">Ведущий — в телефоне хозяина, а роль и ночной ход — на вашем. Поставьте игру и откройте эту ссылку ещё раз — или введите код.</p>
+  <p class="lead" data-t="lead">Ведущий — в телефоне хозяина, а роль и ночной ход — на вашем. Поставьте игру: код подставится сам или вставится кнопкой «Вставить». Или откройте эту ссылку ещё раз.</p>
 
   <div class="code" id="codeBox">
     <small data-t="codeLabel">КОД КОМНАТЫ</small>
@@ -78,7 +78,7 @@
   var en = !/^(ru|uk|be|kk)/i.test(navigator.language || '');
   var T = {
     brand: 'MAFIA', title: 'You’re invited to the table',
-    lead: 'The host runs the game on their phone; your role and night move are on yours. Install the game, then open this link again — or enter the code.',
+    lead: 'The host runs the game on their phone; your role and night move are on yours. Install the game: the code fills in by itself or with the Paste button. Or open this link again.',
     codeLabel: 'ROOM CODE', copy: 'Copy code', copied: 'Copied',
     appstore: 'Get it on the App Store', play: 'Get it on Google Play',
     note: 'Playing on separate phones needs the internet. It is free for guests.'
@@ -98,6 +98,15 @@
   var box = document.getElementById('codeBox');
   if (/^[A-HJ-NP-Z2-9]{6}$/.test(clean)) {
     document.getElementById('code').textContent = clean;
+    // Код — в ссылку на Play: после установки Play отдаёт его приложению
+    // (Install Referrer; в mafia — lib/core/install_referrer.dart, с 1.4.9),
+    // и гость попадает на вход в комнату без второго тапа по ссылке.
+    document.getElementById('play').href =
+      'https://play.google.com/store/apps/details?id=com.matkavt.mafia&referrer=' +
+      encodeURIComponent('c=' + clean + '&utm_source=join_link');
+    // Баннер Safari: игра уже стоит — «Открыть» ведёт прямо в эту комнату.
+    var banner = document.querySelector('meta[name="apple-itunes-app"]');
+    if (banner) banner.setAttribute('content', 'app-id=6813280622, app-argument=' + location.href);
   } else {
     box.classList.add('hidden');   // приглашение без кода: просто «сыграйте и вы»
   }
@@ -106,6 +115,15 @@
     var btn = this, text = document.getElementById('code').textContent;
     var done = function () { btn.textContent = en ? T.copied : 'Скопировано'; };
     if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+  });
+
+  // У Apple ссылки, переживающей установку, нет: код уходит в буфер при
+  // нажатии «Скачать в App Store», а на входе в игре есть «Вставить» (1.4.9).
+  document.getElementById('appstore').addEventListener('click', function () {
+    var text = document.getElementById('code').textContent;
+    if (navigator.clipboard && /^[A-HJ-NP-Z2-9]{6}$/.test(text)) {
+      navigator.clipboard.writeText(text).catch(function () {});
+    }
   });
 
   // Нужный магазин — первым и залитым.

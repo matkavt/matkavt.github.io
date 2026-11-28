@@ -23,6 +23,8 @@
   Без id (ссылка ?from=share из «Поделиться» после партии, iOS и Android) — общий текст
   про игру, и телефон сразу уходит в свой магазин: друг с iPhone — в App Store, с Android —
   в Google Play. Метки: Play referrer utm_source=share_card, App Store кампания ct=spy_share.
+  ?from=qr — код «Скачать себе» на итоге партии (тест result_qr, 6.8): то же, метки
+  utm_source=qr_result и ct=spy_qr.
 -->
 <style>
   :root { color-scheme: dark; }
@@ -100,11 +102,13 @@
     document.title = G.title;
     document.querySelector('[data-t="title"]').textContent = G.title;
     document.querySelector('[data-t="lead"]').textContent = G.lead;
-    var share = new URLSearchParams(location.search).get('from') === 'share';
-    if (share) {
+    var from = new URLSearchParams(location.search).get('from');
+    var tag = from === 'share' ? { ct: 'spy_share', utm: 'share_card' }
+            : from === 'qr' ? { ct: 'spy_qr', utm: 'qr_result' } : null;
+    if (tag) {
       var app = document.getElementById('appstore'), play = document.getElementById('play');
-      app.href = 'https://apps.apple.com/app/id1436433223?pt=118685303&ct=spy_share&mt=8';
-      play.href = playUrl = 'https://play.google.com/store/apps/details?id=com.matkavt.spy&referrer=utm_source%3Dshare_card';
+      app.href = 'https://apps.apple.com/app/id1436433223?pt=118685303&ct=' + tag.ct + '&mt=8';
+      play.href = playUrl = 'https://play.google.com/store/apps/details?id=com.matkavt.spy&referrer=utm_source%3D' + tag.utm;
       if (android) location.replace(play.href);
       else if (ios) location.replace(app.href);
     }
